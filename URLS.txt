@@ -1,0 +1,9 @@
+#GET
+curl http://localhost:8080/v1/organization/optimaGrwth/license/123356
+
+
+#Post
+curl http://localhost:8080/v1/organization/optimaGrowth/license  -H "Content-Type: application/json" -d '{"id":233, "licenseId": "123456", "description": "Software product", "organizationId": "Optima Growth", "licenseType":"complete" }'
+
+#Language Header
+curl -XPOST -H "Accept-language: en" http://localhost:8080/v1/organization/optimaGrowth/license  -H "Content-Type: application/json" -d '{"id":233, "licenseId": "123456", "description": "Software product", "organizationId": "Optima Growth", "licenseType":"complete" }' -v

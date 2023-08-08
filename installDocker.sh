@@ -1,0 +1,54 @@
+#
+1. https://github.com/ivam3/termux-packages/tree/main
+
+mkdir -p $PREFIX/etc/apt/sources.list.d
+
+wget https://raw.githubusercontent.com/ivam3/termux-packages/gh-pages/ivam3-termux-packages.list -O $PREFIX/etc/apt/sources.list.d/ivam3-termux-packages.list
+
+apt update && apt upgrade
+
+2. apt install termux-docker-qemu
+
+3. Steps screen output
+ setup-interfaces
+ ifup eth0
+ echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+
+ wget https://raw.githubusercontent.com/ivam3/termux-packages/gh-pages/packages/termux-docker-qemu/ashrc.sh -O /etc/profile.d/ashrc.sh
+
+ wget https://raw.githubusercontent.com/ivam3/termux-packages/gh-pages/packages/termux-docker-qemu/answerfile.alpine
+
+ sed -i -E 's/(local kernel_opts)=.*/\1="console=ttyS0"/' /sbin/setup-disk
+
+ setup-alpine -f answerfile.alpine
+
+ apk add docker-cli-compose
+
+ poweroff
+ 
+ #passwd: termuxuser
+
+#Video ivan3 https://youtu.be/CXvTUEG1oPs
+
+service docker status
+
+apk add tmux
+tmux new -s Alpine
+tmux list-session
+
+poweroff
+
+docker-compose up file.yml
+
+#start
+termux-docker-qemu alpine
+termux-docker-qemu alpine x11
+
+
+
+
+
+
+
+
+

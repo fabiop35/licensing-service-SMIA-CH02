@@ -1,0 +1,1 @@
+curl https://start.spring.io/starter.zip -o licensing-service-CH02.zip -d type=maven-project -d dependencies=web,lombok,actuator -d groupId=msia -d description="MSIA Licensing Service" -d bootVersion=2.7.11 -d packageName=com.msic -d artifactId=licensing-service -d name=licensingService
