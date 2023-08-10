@@ -44,6 +44,18 @@ docker-compose up file.yml
 termux-docker-qemu alpine
 termux-docker-qemu alpine x11
 
+#SSH Remote Login
+ssh root@localhost -p 2222
+
+#copy files
+scp -P 2222 -r licensing-service-SMIA-CH02.tar root@localhost:/tmp
+
+#maven options
+export MAVEN_OPTS="-Xmx512m -Xms256m -Djava.awt.headless=true"
+
+#Build the image (inside the server with Docker running).
+mvn package dockerfile:build
+
 
 
 

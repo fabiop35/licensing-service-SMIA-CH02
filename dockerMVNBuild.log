@@ -1,0 +1,75 @@
+[INFO] Image will be built as smia/licensing-service:latest
+[INFO]
+[INFO] Step 1/12 : FROM openjdk:17.0.1-jdk-slim as build
+[INFO]
+[INFO] Pulling from library/openjdk
+[INFO] Image a2abf6c4d29d: Already exists
+[INFO] Image 2bbde5250315: Already exists
+[INFO] Image 1343f138b677: Pulling fs layer
+[INFO] Image 1343f138b677: Downloading
+[INFO] Image 1343f138b677: Verifying Checksum
+[INFO] Image 1343f138b677: Download complete
+[INFO] Image 1343f138b677: Extracting
+[INFO] Image 1343f138b677: Pull complete
+[INFO] Digest: sha256:fc5fa503124ba7021bbf8cb3718bf08791590d0aa2295c7cc551de65f9919290
+[INFO] Status: Downloaded newer image for openjdk:17.0.1-jdk-slim
+[INFO]  ---> f8ad5f24764f
+[INFO] Step 2/12 : LABEL maintainer="@gmail.com"
+[INFO]
+[INFO]  ---> Running in 6bfb358dd359
+[INFO] Removing intermediate container 6bfb358dd359
+[INFO]  ---> ddbc4aa56006
+[INFO] Step 3/12 : ARG JAR_FILE
+[INFO]
+[INFO]  ---> Running in 850eaa57e83d
+[INFO] Removing intermediate container 850eaa57e83d
+[INFO]  ---> fee37b89e9ec
+[INFO] Step 4/12 : COPY ${JAR_FILE} app.jar
+[INFO]
+[INFO]  ---> 9568b2b3d1c7
+[INFO] Step 5/12 : RUN mkdir -p target/dependency && (cd target/dependency; jar -xf /app.jar)
+[INFO]
+[INFO]  ---> Running in 04003db0d0ae
+[INFO] Removing intermediate container 04003db0d0ae
+[INFO]  ---> 0d3b1ffd1cc0
+[INFO] Step 6/12 : FROM openjdk:17.0.1-jdk-slim
+[INFO]
+[INFO] Pulling from library/openjdk
+[INFO] Digest: sha256:fc5fa503124ba7021bbf8cb3718bf08791590d0aa2295c7cc551de65f9919290
+[INFO] Status: Image is up to date for openjdk:17.0.1-jdk-slim
+[INFO]  ---> f8ad5f24764f
+[INFO] Step 7/12 : VOLUME /tmp
+[INFO]
+[INFO]  ---> Running in bf330bbc8f9f
+[INFO] Removing intermediate container bf330bbc8f9f
+[INFO]  ---> 04a3d35db17c
+[INFO] Step 8/12 : ARG DEPENDENCY=/target/dependency
+[INFO]
+[INFO]  ---> Running in fcabd830ae54
+[INFO] Removing intermediate container fcabd830ae54
+[INFO]  ---> c358d570b24c
+[INFO] Step 9/12 : COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+[INFO]
+[INFO]  ---> 7e62de57c4e5
+[INFO] Step 10/12 : COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+[INFO]
+[INFO]  ---> 14c13e6530c2
+[INFO] Step 11/12 : COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+[INFO]
+[INFO]  ---> 647141c0dbf1
+[INFO] Step 12/12 : ENTRYPOINT ["java","-cp","app:app/lib/*","com.smia.LicensingServiceApplication"]
+[INFO]
+[INFO]  ---> Running in 640c85749f5c
+[INFO] Removing intermediate container 640c85749f5c
+[INFO]  ---> 7d908e9195f8
+[INFO] Successfully built 7d908e9195f8
+[INFO] Successfully tagged smia/licensing-service:latest
+[INFO]
+[INFO] Detected build of image with id 7d908e9195f8
+[INFO] Building jar: /tmp/licensing-service-SMIA-CH02/target/licensing-service-latest-docker-info.jar
+[INFO] Successfully built smia/licensing-service:latest
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:01 h
+[INFO] Finished at: 2023-08-10T01:10:10Z
