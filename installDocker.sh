@@ -56,10 +56,16 @@ export MAVEN_OPTS="-Xmx512m -Xms256m -Djava.awt.headless=true"
 #Build the image (inside the server with Docker running).
 mvn package dockerfile:build
 
+#clone
+https://github.com/fabiop35/licensing-service-SMIA-CH02.git
+
+#run image, create container
+docker run -it smia/licensing-service:latest -p8080:8080
 
 
-
-
+h graphical enviroment
+[!] To set a graphical enviroment you should run in alpine the command:
+    wget https://raw.githubusercontent.com/ivam3/termux-packages/gh-pages/packages/termux-docker-qemu/alpineX11.sh && ash alpineX11.sh
 
 
 
