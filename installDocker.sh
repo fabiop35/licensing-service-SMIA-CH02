@@ -68,5 +68,10 @@ h graphical enviroment
     wget https://raw.githubusercontent.com/ivam3/termux-packages/gh-pages/packages/termux-docker-qemu/alpineX11.sh && ash alpineX11.sh
 
 
+#Enabled external port
+added:
+hostfwd=tcp::8200-:8200
+./files/usr/bin/termux-docker-qemu
+
 
 
