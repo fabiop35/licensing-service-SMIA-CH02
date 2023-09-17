@@ -10,6 +10,13 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.web.client.RestTemplate;
+
+@EnableDiscoveryClient
+@EnableFeignClients
 @RefreshScope
 @SpringBootApplication
 public class LicensingServiceApplication {
@@ -29,6 +36,12 @@ public class LicensingServiceApplication {
         messageSource.setUseCodeAsDefaultMessage(true);
         messageSource.setBasenames("messages");
         return messageSource;
+    }
+
+    @LoadBalanced
+    @Bean
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
     }
 
     public static void main(String[] args) {

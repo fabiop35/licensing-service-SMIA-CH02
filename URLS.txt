@@ -1,9 +1,19 @@
 #GET
 curl http://localhost:8080/v1/organization/optimaGrwth/license/123356
 
+curl http://localhost:8080/v1/organization/optima/license/51740cce-f3ed-412d-893c-7bab59411deb
 
 #Post
 curl http://localhost:8080/v1/organization/optimaGrowth/license  -H "Content-Type: application/json" -d '{"id":233, "licenseId": "123456", "description": "Software product", "organizationId": "Optima Growth", "licenseType":"complete", "productName": "CRM" }'
 
 #Language Header
-curl -XPOST -H "Accept-language: en" http://localhost:8080/v1/organization/optimaGrowth/license  -H "Content-Type: application/json" -d '{"id":233, "licenseId": "123456", "description": "Software product", "organizationId": "Optima Growth", "licenseType":"complete" }' -v
+curl -XPOST -H "Accept-language: en" http://localhost:8080/v1/organization/optimaGrowth/license  -H "Content-Type: application/json" -d '{"id":233, "licenseId": "123456", "description": "Software product", "organizationId": "optima", "licenseType":"complete", "productName": "PN" }' -v
+
+http://<licensing service Hostname/IP>:<Port>/v1/ organization/<organizationID>/license/<licenseID>/<client type( feign, discovery, rest)>
+
+#Test feign client
+curl http://localhost:8080/v1/organization/optima/license/51740cce-f3ed-412d-893c-7bab59411deb/feign
+
+
+
+

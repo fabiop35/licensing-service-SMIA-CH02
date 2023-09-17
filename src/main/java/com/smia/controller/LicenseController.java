@@ -14,14 +14,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RequestHeader;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import lombok.extern.slf4j.Slf4j;
+
 import com.smia.model.License;
 import com.smia.service.LicenseService;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "v1/organization/{organizationId}/license")
 public class LicenseController {
@@ -43,6 +47,17 @@ public class LicenseController {
         );
 
         return ResponseEntity.ok(license);
+    }
+
+    @RequestMapping(value = "/{licenseId}/{clientType}", method = RequestMethod.GET)
+    public License getLicensesWithClient(@PathVariable("organizationId") String organizationId,
+            @PathVariable("licenseId") String licenseId,
+            @PathVariable("clientType") String clientType) {
+      log.info("<<< Controller.getLicenseWithClient");
+      log.info("<<< license: "+licenseId);
+      log.info("<<< organizationId: "+organizationId);
+      log.info("<<< clientType: "+clientType);
+        return licenseService.getLicense(licenseId, organizationId, clientType);
     }
 
     @PutMapping
