@@ -14,6 +14,15 @@ http://<licensing service Hostname/IP>:<Port>/v1/ organization/<organizationID>/
 #Test feign client
 curl http://localhost:8080/v1/organization/optima/license/51740cce-f3ed-412d-893c-7bab59411deb/feign
 
+#CH07 - Circuit Breaker
+#Controller
+@RequestMapping(value="v1/organization/{organizationId}/license")
 
+#Get Organization Id
+curl http://localhost:8080/v1/organization/Optima/license/
 
+#Request with header(LocalThread)
+curl -H "tmx-correlation-id:TEST-CORRELATION-ID" http://localhost:8080/v1/organization/Optima/license/
 
+#
+http://localhost:8080/actuator/health

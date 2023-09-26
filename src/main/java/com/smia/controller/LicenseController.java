@@ -20,16 +20,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import com.smia.model.License;
 import com.smia.service.LicenseService;
+import com.smia.utils.UserContextHolder;
+import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 @Slf4j
 @RestController
 @RequestMapping(value = "v1/organization/{organizationId}/license")
 public class LicenseController {
 
+    private static final Logger logger = LoggerFactory.getLogger(LicenseController.class);
+    
     @Autowired
     private LicenseService licenseService;
 
@@ -53,10 +60,10 @@ public class LicenseController {
     public License getLicensesWithClient(@PathVariable("organizationId") String organizationId,
             @PathVariable("licenseId") String licenseId,
             @PathVariable("clientType") String clientType) {
-      log.info("<<< Controller.getLicenseWithClient");
-      log.info("<<< license: "+licenseId);
-      log.info("<<< organizationId: "+organizationId);
-      log.info("<<< clientType: "+clientType);
+        log.info("<<< Controller.getLicenseWithClient");
+        log.info("<<< license: " + licenseId);
+        log.info("<<< organizationId: " + organizationId);
+        log.info("<<< clientType: " + clientType);
         return licenseService.getLicense(licenseId, organizationId, clientType);
     }
 
@@ -76,4 +83,13 @@ public class LicenseController {
     public ResponseEntity<String> deleteLicense(@PathVariable("licenseId") String licenseId) {
         return ResponseEntity.ok(licenseService.deleteLicense(licenseId));
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public List<License> getLicenses(@PathVariable("organizationId") String organizationId) throws TimeoutException {
+        log.info("--->Controller.CIRCUITBREAKER>getLicenses(organizationId)");
+        log.info("LicenseServiceController Correlation id: {}", UserContextHolder.getContext().getCorrelationId());
+        log.debug("Debug.LicenseServiceControllerCorrelation id: {}", UserContextHolder.getContext().getCorrelationId());
+        return licenseService.getLicensesByOrganization(organizationId);
+    }
+
 }

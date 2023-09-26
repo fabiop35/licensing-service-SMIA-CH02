@@ -38,13 +38,13 @@ public class License extends RepresentationModel<License> {
     private String organizationName;
     @Transient
     private String contactName;
+    @Transient
     private String contactEmail;
-
-    public License withComment(String comment) {
-        this.setComm
     @Transient
     private String contactPhone;
-    @Transientent(comment);
+
+    public License withComment(String comment) {
+        this.setComment(comment);
         return this;
     }
 }
