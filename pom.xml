@@ -126,6 +126,13 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <jvmArguments>
+                      -Xms64m
+		              -Xmx128m
+		              -XX:+UseSerialGC
+	                  -XX:MaxRAM=134m
+                      -XX:MetaspaceSize=138M
+                    </jvmArguments>
                 </configuration>
             </plugin>
             <!-- This plugin is used to create a docker image and publish the image to docker hub-->
