@@ -48,6 +48,15 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- CH10: Spring Cloud Stream & Kafka -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-kafka</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -100,6 +109,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <!-- Redis cache -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     
     <dependencyManagement>
@@ -127,11 +146,11 @@
                         </exclude>
                     </excludes>
                     <jvmArguments>
-                      -Xms64m
-		              -Xmx128m
-		              -XX:+UseSerialGC
-	                  -XX:MaxRAM=134m
-                      -XX:MetaspaceSize=138M
+                        -Xms64m
+                        -Xmx128m
+                        -XX:+UseSerialGC
+                        -XX:MaxRAM=134m
+                        -XX:MetaspaceSize=138M
                     </jvmArguments>
                 </configuration>
             </plugin>

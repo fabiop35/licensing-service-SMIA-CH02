@@ -70,12 +70,17 @@ public class LicenseService {
 
     public License getLicense(String licenseId, String organizationId, String clientType) {
         License license = licenseRepository.findByOrganizationIdAndLicenseId(organizationId, licenseId);
+
+        log.info("### license ###");
+        log.info("licenseId: {} ", licenseId);
+        log.info("organizationId: {} ", organizationId);
         if (null == license) {
             throw new IllegalArgumentException(String.format(messages.getMessage("license.search.error.message", null, null), licenseId, organizationId));
         }
-
-        Organization organization = retrieveOrganizationInfo(organizationId, clientType);
+        //ToDo: recover the organizationId
+        Organization organization = retrieveOrganizationInfo(licenseId, clientType);
         if (null != organization) {
+            log.info("### Got organization info OK");
             license.setOrganizationName(organization.getName());
             license.setContactName(organization.getContactName());
             license.setContactEmail(organization.getContactEmail());
@@ -138,7 +143,7 @@ public class LicenseService {
     public List<License> getLicensesByOrganization(String organizationId) throws TimeoutException {
         log.info("INI: LicenseService.getLicensesByOrganization Correlation id: {}", UserContextHolder.getContext().getCorrelationId());
         randomlyRunLong();
-        
+
         return licenseRepository.findByOrganizationId(organizationId);
     }
 

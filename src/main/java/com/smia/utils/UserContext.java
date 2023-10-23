@@ -1,44 +1,58 @@
 package com.smia.utils;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserContext {
+
     public static final String CORRELATION_ID = "tmx-correlation-id";
-    public static final String AUTH_TOKEN     = "tmx-auth-token";
-    public static final String USER_ID        = "tmx-user-id";
+    public static final String AUTH_TOKEN = "Authorization";
+    public static final String USER_ID = "tmx-user-id";
     public static final String ORGANIZATION_ID = "tmx-organization-id";
 
-    private String correlationId= new String();
-    private String authToken= new String();
-    private String userId = new String();
-    private String organizationId = new String();
+    private static final ThreadLocal<String> correlationId = new ThreadLocal<String>();
+    private static final ThreadLocal<String> authToken = new ThreadLocal<String>();
+    private static final ThreadLocal<String> userId = new ThreadLocal<String>();
+    private static final ThreadLocal<String> organizationId = new ThreadLocal<String>();
 
-    public String getCorrelationId() { return correlationId;}
-    public void setCorrelationId(String correlationId) {
-        this.correlationId = correlationId;
+    public static String getCorrelationId() {
+        return correlationId.get();
     }
 
-    public String getAuthToken() {
-        return authToken;
+    public static void setCorrelationId(String cid) {
+        correlationId.set(cid);
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    public static String getAuthToken() {
+        return authToken.get();
     }
 
-    public String getUserId() {
-        return userId;
+    public static void setAuthToken(String token) {
+        authToken.set(token);
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public static String getUserId() {
+        return userId.get();
     }
-	public String getOrganizationId() {
-		return organizationId;
-	}
-	public void setOrganizationId(String organizationId) {
-		this.organizationId = organizationId;
-	}
+
+    public static void setUserId(String user) {
+        userId.set(user);
+    }
+
+    public static String getOrganizationId() {
+        return organizationId.get();
+    }
+
+    public static void setOrganizationId(String id) {
+        organizationId.set(id);
+    }
+
+    public static HttpHeaders getHttpHeaders() {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set(CORRELATION_ID, getCorrelationId());
+
+        return httpHeaders;
+    }
 
 }
