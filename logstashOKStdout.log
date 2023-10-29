@@ -1,0 +1,91 @@
+{
+              "spanId" => "f4e6faa5a6ca5368",
+             "message" => "~~~>getUsername.JWT<~~~",
+         "logger_name" => "com.smia.gatewayserver.filters.TrackingFilter",
+         "level_value" => 20000,
+                "tags" => [
+        [0] "manningPublicationsDev"
+    ],                                                               "@timestamp" => 2023-10-26T16:03:48.595Z,                       "level" => "INFO",                              "application_name" => "gateway-server",                            "@version" => "1",                                      "thread_name" => "reactor-http-nio-8",
+             "traceId" => "f4e6faa5a6ca5368"               }
+{
+              "spanId" => "f4e6faa5a6ca5368",
+             "message" => "###Parsing Custom Field username: The authentication name  from the token is :  ",
+         "logger_name" => "com.smia.gatewayserver.filters.TrackingFilter",
+         "level_value" => 20000,
+                "tags" => [
+        [0] "manningPublicationsDev"
+    ],
+          "@timestamp" => 2023-10-26T16:03:48.597Z,
+               "level" => "INFO",                              "application_name" => "gateway-server",                            "@version" => "1",
+         "thread_name" => "reactor-http-nio-8",                         "traceId" => "f4e6faa5a6ca5368"
+}
+{
+             "message" => "[Completing outgoing request for http://localhost:8072/v1/organization/Optima/license/7a7d4cfd-42ed-4521-be89-f2b3258115ad.]",
+         "logger_name" => "com.smia.gatewayserver.filters.ResponseFilter",
+                "tags" => [
+        [0] "manningPublicationsDev"
+    ],
+               "level" => "DEBUG",
+          "@timestamp" => 2023-10-26T16:03:48.665Z,            "application_name" => "gateway-server",                            "@version" => "1",
+         "thread_name" => "reactor-http-nio-8",                     "level_value" => 10000
+}
+{
+              "spanId" => "f4e6faa5a6ca5368",
+             "message" => "~~~>username: ",
+         "logger_name" => "com.smia.gatewayserver.filters.TrackingFilter",
+         "level_value" => 20000,
+                "tags" => [
+        [0] "manningPublicationsDev"
+    ],
+          "@timestamp" => 2023-10-26T16:03:48.596Z,
+               "level" => "INFO",                              "application_name" => "gateway-server",                            "@version" => "1",
+         "thread_name" => "reactor-http-nio-8",                         "traceId" => "f4e6faa5a6ca5368"
+}
+{
+              "spanId" => "0f90e23939f49e47",
+             "message" => "###### doFilter.UserContextFilter Correlation id: 3ed6ef4b-8ccc-4e48-a1c3-e5cc7caab705",
+         "logger_name" => "com.smia.utils.UserContextFilter",
+         "level_value" => 20000,
+                "tags" => [
+        [0] "manningPublicationsDev"
+    ],
+          "@timestamp" => 2023-10-26T16:03:48.624Z,                       "level" => "INFO",
+    "application_name" => "licensing-service",                         "@version" => "1",
+         "thread_name" => "http-nio-8180-exec-3",
+             "traceId" => "f4e6faa5a6ca5368"
+}
+{
+             "message" => ">>> Adding the correlation id to the outbound headers. f4e6faa5a6ca5368 <<<",
+         "logger_name" => "com.smia.gatewayserver.filters.ResponseFilter",
+                "tags" => [
+        [0] "manningPublicationsDev"
+    ],
+               "level" => "INFO",                                    "@timestamp" => 2023-10-26T16:03:48.664Z,            "application_name" => "gateway-server",                            "@version" => "1",                                      "thread_name" => "reactor-http-nio-8",                     "level_value" => 20000                            }
+{                                                                        "spanId" => "f4e6faa5a6ca5368",                           "message" => "tmx-correlation-id generated in tracking filter: 3ed6ef4b-8ccc-4e48-a1c3-e5cc7caab705.",
+         "logger_name" => "com.smia.gatewayserver.filters.TrackingFilter",
+         "level_value" => 20000,
+                "tags" => [
+        [0] "manningPublicationsDev"
+    ],
+          "@timestamp" => 2023-10-26T16:03:48.592Z,
+               "level" => "INFO",
+    "application_name" => "gateway-server",
+            "@version" => "1",
+         "thread_name" => "reactor-http-nio-8",                         "traceId" => "f4e6faa5a6ca5368"               }                                                          {                                                                        "spanId" => "0f90e23939f49e47",                           "message" => "###### DoFilter #########",              "logger_name" => "com.smia.utils.UserContextFilter",
+         "level_value" => 20000,                                           "tags" => [                                        [0] "manningPublicationsDev"
+    ],
+          "@timestamp" => 2023-10-26T16:03:48.623Z,
+               "level" => "INFO",
+    "application_name" => "licensing-service",
+            "@version" => "1",
+         "thread_name" => "http-nio-8180-exec-3",
+             "traceId" => "f4e6faa5a6ca5368"
+}
+{
+             "message" => "Completing outgoing request for http://localhost:8072/v1/organization/Optima/license/7a7d4cfd-42ed-4521-be89-f2b3258115ad.",                                   "logger_name" => "com.smia.gatewayserver.filters.ResponseFilter",                                                            "tags" => [                                        [0] "manningPublicationsDev"                           ],
+               "level" => "DEBUG",                                   "@timestamp" => 2023-10-26T16:03:48.663Z,            "application_name" => "gateway-server",
+            "@version" => "1",
+         "thread_name" => "reactor-http-nio-8",
+         "level_value" => 10000
+}
+

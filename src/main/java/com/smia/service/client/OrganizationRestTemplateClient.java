@@ -9,6 +9,9 @@ import org.springframework.web.client.RestTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import brave.Tracer;
+import brave.ScopedSpan;
+
 import com.smia.model.Organization;
 import com.smia.repository.OrganizationRedisRepository;
 import com.smia.utils.UserContext;
@@ -21,6 +24,9 @@ public class OrganizationRestTemplateClient {
 
     @Autowired
     OrganizationRedisRepository redisRepository;
+
+    @Autowired
+    Tracer tracer;
 
     private static final Logger logger = LoggerFactory.getLogger(OrganizationRestTemplateClient.class);
 
@@ -56,6 +62,7 @@ public class OrganizationRestTemplateClient {
 
     private Organization checkRedisCache(String organizationId) {
         logger.info("~~~> checkRedisCache.findById() <~~~");
+        ScopedSpan newSpan = tracer.startScopedSpan("readLicensingDataFromRedis");
         try {
             Organization org = redisRepository.findById(organizationId);
 
@@ -67,6 +74,10 @@ public class OrganizationRestTemplateClient {
         } catch (Exception ex) {
             logger.error("Error encountered while trying to retrieve organization {} check Redis Cache.  Exception {}", organizationId, ex);
             return null;
+        } finally {
+            newSpan.tag("peer.service", "redis");
+            newSpan.annotate("Client received");
+            newSpan.finish();
         }
     }
 
