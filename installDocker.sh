@@ -74,4 +74,23 @@ hostfwd=tcp::8200-:8200
 ./files/usr/bin/termux-docker-qemu
 
 
+docker run -p27017:27017 mongo
+
+#Install alpine - docker
+https://gist.github.com/oofnikj/e79aef095cd08756f7f26ed244355d62
+
+qemu-system-x86_64 -machine q35 -m 3072 -smp cpus=2 -cpu qemu64 \
+  -drive if=pflash,format=raw,read-only,file=$PREFIX/share/qemu/edk2-x86_64-code.fd \
+  -netdev user,id=n1,hostfwd=tcp::2222-:22 -device virtio-net,netdev=n1 \
+  -nographic alpine.img
+  
+apk update && apk add docker
+
+service docker start
+rc-update add docker
+
+
+/data/data/com.termux/files/home/alpine
+
+
 
